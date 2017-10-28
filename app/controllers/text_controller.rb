@@ -10,5 +10,6 @@ class TextController < ApplicationController
   end
   def read
       render plain: Text.find_by(:number => ($id - 1)).text
+      Text.delete_all
   end
 end
