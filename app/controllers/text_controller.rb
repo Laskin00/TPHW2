@@ -1,6 +1,8 @@
 class TextController < ApplicationController
   $message = ""
   $id = 0
+  def index
+  end
   def create
     $message = params[:text]
     heroku_link = "https://texthider.herokuapp.com/messages/"
