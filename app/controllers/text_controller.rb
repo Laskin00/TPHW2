@@ -15,7 +15,7 @@ class TextController < ApplicationController
       Text.destroy_all
   end
   def c_json
-    if params[:Content-Type] == 'application/json'
+    if params['Content-Type'] == 'application/json'
       $message = params[:message]
       Text.create(:text => $message, :number => $id)
       $id = $id + 1
