@@ -26,7 +26,8 @@ class TextController < ApplicationController
       render plain: "'"'{"url":' + '"' + url.to_s + '"}'"'" + "\n"
     end
     if request.headers["Content-Type"] == 'text/xml'
-      puts Nokogiri::XML(request.body.read).content
+      puts 'vliza da'
+      render plain: Nokogiri::XML(request.body.read).content
     end
   end
 end
