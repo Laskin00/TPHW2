@@ -26,8 +26,12 @@ class TextController < ApplicationController
       render plain: "'"'{"url":' + '"' + url.to_s + '"}'"'" + "\n"
     end
     if request.headers["Content-Type"] == 'text/xml'
-      puts 'vliza da'
-      render plain: Nokogiri::XML(request.body.read).content
+      $message = Nokogiri::XML(request.body.read).content
+      Text.create(:text => $message, :number => $id)
+      $id = $id + 1
+      url = "https://texthider.herokuapp.com/messages/" + $id.to_s
+      render plain: '<url>' + url.to_s +'</url>' + "\n"
+
     end
   end
 end
