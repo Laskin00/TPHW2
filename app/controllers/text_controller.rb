@@ -1,6 +1,8 @@
 class TextController < ApplicationController
   require 'json'
   require 'net/http'
+  require 'nokogiri'
+
   $message = ""
   $id = 0
   def index
@@ -16,13 +18,15 @@ class TextController < ApplicationController
       Text.destroy_all
   end
   def c_json
-    puts  request.headers["Content-Type"]
     if request.headers["Content-Type"] == 'application/json'
       $message = params[:message]
       Text.create(:text => $message, :number => $id)
       $id = $id + 1
       url = "https://texthider.herokuapp.com/messages/" + $id.to_s
       render plain: "'"'{"url":' + '"' + url.to_s + '"}'"'" + "\n"
+    end
+    if request.headers["Content-Type"] == 'text/xml'
+      puts Nokogiri::XML(request.body.read).content
     end
   end
 end
