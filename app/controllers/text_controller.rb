@@ -6,10 +6,9 @@ class TextController < ApplicationController
   end
   def create
     $message = params[:text]
-    $heroku_link = "https://texthider.herokuapp.com/messages/"
     Text.create(:text => $message, :number => $id)
     $id = $id + 1
-    render plain: $heroku_link.to_s + $id.to_s
+    render plain: "https://texthider.herokuapp.com/messages/" + $id.to_s
   end
   def read
       render plain: Text.find_by(:number => ($id - 1)).text
@@ -19,6 +18,6 @@ class TextController < ApplicationController
     $message = params[:message]
     Text.create(:text => $message, :number => $id)
     $id = $id + 1
-    render plain: $heroku_link.to_s + $id.to_s + "                                    "
+    render plain: "https://texthider.herokuapp.com/messages/" + $id.to_s + "\n"
   end
 end
