@@ -16,6 +16,7 @@ class TextController < ApplicationController
   end
   def c_json
     @type = params['Content-Type']
+    puts @type.to_s
     if @type.to_s == 'application/json'
       $message = params[:message]
       Text.create(:text => $message, :number => $id)
