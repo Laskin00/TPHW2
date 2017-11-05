@@ -3,6 +3,5 @@ Rails.application.routes.draw do
   root 'text#text'
   post '' => 'text#create'
   get 'messages/:id' => 'text#read'
-  get'notes/api' => 'text#c_json'
-  post 'notes/api' => 'text#create'
+  post'notes/api' => 'text#c_json'
 end
