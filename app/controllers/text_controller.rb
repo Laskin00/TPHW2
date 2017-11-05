@@ -13,7 +13,7 @@ class TextController < ApplicationController
   end
   def read
       render plain: Text.find_by(:number => ($id - 1)).text
-      Text.find_by(:number => ($id - 1)).delete
+      Text.destroy_all
   end
   def c_json
     $message = params[:message]
