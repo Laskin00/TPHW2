@@ -21,7 +21,7 @@ class TextController < ApplicationController
       Text.create(:text => $message, :number => $id)
       $id = $id + 1
       url = "https://texthider.herokuapp.com/messages/" + $id.to_s
-      render plain: '{"url":' + '"' + url.to_s + '"}'
+      render plain: "'"'{"url":' + '"' + url.to_s + '"}'"'" + "\n"
     #end
   end
 end
