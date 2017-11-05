@@ -15,13 +15,13 @@ class TextController < ApplicationController
       Text.destroy_all
   end
   def c_json
-    @type = params['Content-Type']
-    puts @type.to_s
-    if @type.to_s == 'application/json'
+    #@type = params['Content-Type']
+    #if @type.to_s == 'application/json'
       $message = params[:message]
       Text.create(:text => $message, :number => $id)
       $id = $id + 1
-      render plain: "https://texthider.herokuapp.com/messages/" + $id.to_s + "\n"
-    end
+      url = "https://texthider.herokuapp.com/messages/" + $id.to_s
+      render plain: '{"url":' + '"' + url.to_s + '"}'
+    #end
   end
 end
